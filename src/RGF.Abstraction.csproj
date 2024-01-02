@@ -29,6 +29,10 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
+  <Target Name="Recrovit-signtool" AfterTargets="PostBuildEvent" Condition="'$(Configuration)'=='Release' and Exists('$(ProjectDir)..\..\dist\signtool.bat')">
+    <Exec Command="$(ProjectDir)..\..\dist\signtool.bat $(ProjectDir)$(OutputPath)$(TargetFileName)" />
+  </Target>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.4" />
