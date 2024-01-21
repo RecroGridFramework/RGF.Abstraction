@@ -112,6 +112,7 @@ public class RgfDynamicDictionary : DynamicObject, IDictionary<string, object>, 
                         value = System.Web.HttpUtility.HtmlDecode(value.ToString());
                     }
                 }
+                logger.LogDebug("RgfDynamicData.Create: {name}, {prop}, {value}", name, prop?.ClientDataType.ToString() ?? "?", value);
                 dynData.SetMember(name, value);
             }
         }

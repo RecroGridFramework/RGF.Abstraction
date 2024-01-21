@@ -136,7 +136,7 @@ public class RgfProperty : IRgfProperty
                     return ClientDataType.String;//kliens oldalon mindig string
 
                 case PropertyFormType.CheckBox:
-                    if (Options?.GetBoolValue("RGO_Nullable") == false)
+                    if (Options?.GetBoolValue("RGO_Nullable") != true)
                     {
                         return ClientDataType.Boolean;
                     }
