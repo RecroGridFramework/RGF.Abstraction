@@ -20,6 +20,8 @@ public class RgfEntity
 
     public string Title { get; set; }
 
+    public string MenuTitle { get; set; }
+
     public string CRUD { get; set; }
 
     public RgfPermissions Permissions { get; set; }
