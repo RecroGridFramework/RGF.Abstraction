@@ -47,10 +47,7 @@ public class RgfDynamicDictionary : DynamicObject, IDictionary<string, object>, 
             {
                 dynValue.Value = value;
             }
-            else
-            {
-                _data[key] = value;
-            }
+            _data[key] = value;
         }
     }
     public object GetMember(string key)
