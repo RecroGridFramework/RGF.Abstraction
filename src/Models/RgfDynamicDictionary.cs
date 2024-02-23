@@ -55,7 +55,7 @@ public class RgfDynamicDictionary : DynamicObject, IDictionary<string, object>, 
     {
         lock (_lock)
         {
-            if (_dynData.TryGetValue(key, out var dynValue))
+            if (_dynData.TryGetValue(key ?? throw new ArgumentNullException(nameof(key)), out var dynValue))
             {
                 dynValue.Value = value;
             }
@@ -67,13 +67,28 @@ public class RgfDynamicDictionary : DynamicObject, IDictionary<string, object>, 
     {
         lock (_lock)
         {
-            if (_dynData.TryGetValue(key, out var dynValue))
+            if (_dynData.TryGetValue(key ?? throw new ArgumentNullException(nameof(key)), out var dynValue))
             {
                 return dynValue.Value;
             }
             TryGetMember(key, out object value);
             return value;
         }
+    }
+
+    public void Set<TValue>(string key, Func<TValue, TValue> valueFactory) where TValue : class => SetMember(key, valueFactory(Get<TValue>(key)));
+
+    public TValue Get<TValue>(string key) where TValue : class => GetMember(key) as TValue;
+
+    public TValue GetOrNew<TValue>(string key) where TValue : class, new()
+    {
+        var value = Get<TValue>(key);
+        if (value == null)
+        {
+            value = new();
+            SetMember(key, value);
+        }
+        return value;
     }
 
     public RgfDynamicData GetItemData(string key)
