@@ -13,7 +13,7 @@ public interface IRecroSecService
 
     bool IsAdmin { get; }
 
-    List<string> UserRoles { get; }
+    List<string> RoleClaim { get; }
 
     ClaimsPrincipal CurrentUser { get; }
 
