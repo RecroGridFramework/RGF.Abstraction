@@ -44,7 +44,9 @@ public interface IRgfEventArgs<TArgs> where TArgs : EventArgs
 {
     object Sender { get; }
 
+    TArgs Args { get; }
+
     bool Handled { get; set; }
 
-    TArgs Args { get; }
+    bool PreventDefault { get; set; }
 }
