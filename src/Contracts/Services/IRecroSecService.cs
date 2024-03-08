@@ -17,6 +17,8 @@ public interface IRecroSecService
 
     ClaimsPrincipal CurrentUser { get; }
 
+    Task<string?> GetAccessTokenAsync();
+
     string UserLanguage { get; }
 
     Task<string> SetUserLanguageAsync(string language);
