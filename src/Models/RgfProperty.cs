@@ -65,6 +65,20 @@ public enum ClientDataType
     Boolean = 7,
 }
 
+public static class EnumExtension
+{
+    public static bool IsNumeric(this ClientDataType data)
+    {
+        switch (data)
+        {
+            case ClientDataType.Integer:
+            case ClientDataType.Decimal:
+            case ClientDataType.Double:
+                return true;
+        }
+        return false;
+    }
+}
 public interface IRgfProperty
 {
     string Alias { get; set; }
