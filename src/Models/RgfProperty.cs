@@ -239,6 +239,10 @@ public class GridColumnSettings : RgfColumnSettings
         {
             cssClass = "rgf-ebase";
         }
+        else if (property.Ex.IndexOf('N') != -1)
+        {
+            cssClass = "rgf-esql";
+        }
         return cssClass;
     }
 }
