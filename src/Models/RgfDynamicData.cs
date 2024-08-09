@@ -206,7 +206,19 @@ public class RgfDynamicData : IEquatable<RgfDynamicData>
             }
             else if (type == typeof(DateTime) || type == typeof(DateTime?))
             {
-                strValue = ((DateTime)Value).ToUniversalTime().ToString("O");
+                DateTime dateTimeValue = (DateTime)Value;
+                if (dateTimeValue.TimeOfDay == TimeSpan.Zero)
+                {
+                    strValue = dateTimeValue.ToString("yyyy-MM-dd");
+                }
+                else
+                {
+                    if (dateTimeValue.Kind == DateTimeKind.Local)
+                    {
+                        dateTimeValue.ToUniversalTime();
+                    }
+                    strValue = dateTimeValue.ToString("O");
+                }
             }
             else
             {
