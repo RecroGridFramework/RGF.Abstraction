@@ -18,9 +18,9 @@ public interface IRgfNotificationManager : IDisposable
 
     Task RaiseEventAsync<TArgs>(TArgs args, object sender) where TArgs : EventArgs;
 
-    IRgfObserver<IRgfEventArgs<TArgs>> Subscribe<TArgs>(object receiver, Action<IRgfEventArgs<TArgs>> handler) where TArgs : EventArgs;
+    IRgfObserver<IRgfEventArgs<TArgs>> Subscribe<TArgs>(Action<IRgfEventArgs<TArgs>> handler) where TArgs : EventArgs;
 
-    IRgfObserver<IRgfEventArgs<TArgs>> Subscribe<TArgs>(object receiver, Func<IRgfEventArgs<TArgs>, Task> handler) where TArgs : EventArgs;
+    IRgfObserver<IRgfEventArgs<TArgs>> Subscribe<TArgs>(Func<IRgfEventArgs<TArgs>, Task> handler) where TArgs : EventArgs;
 }
 
 public interface IRgfObservableEvent<TArgs> where TArgs : EventArgs
@@ -43,6 +43,8 @@ public interface IRgfObservable<out T> : IObservable<T>
 public interface IRgfEventArgs<TArgs> where TArgs : EventArgs
 {
     object Sender { get; }
+
+    DateTime TriggeredAt { get; }
 
     TArgs Args { get; }
 
