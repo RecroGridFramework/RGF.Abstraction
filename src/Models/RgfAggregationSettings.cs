@@ -5,14 +5,17 @@ namespace Recrovit.RecroGridFramework.Abstraction.Models;
 
 public class RgfAggregationSettings
 {
-    public List<RgfAggregationColumn> Columns { get; set; } = new List<RgfAggregationColumn>();
+    public List<RgfAggregationColumn> Columns { get; set; } = new();
 
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public int? Take { get; set; }
+    public List<int> Groups { get; set; } = new ();
+
+    public List<int> SubGroup { get; set; } = new();
 }
 
 public class RgfAggregationColumn
 {
+    public static readonly string[] AllowedAggregates = { "Sum", "Avg", "Min", "Max", "Count" };
+
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string Aggregate { get; set; }
 

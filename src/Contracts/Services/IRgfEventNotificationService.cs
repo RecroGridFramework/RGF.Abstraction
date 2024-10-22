@@ -40,15 +40,18 @@ public interface IRgfObservable<out T> : IObservable<T>
     IDisposable Subscribe(IRgfObserver<T> observer);
 }
 
-public interface IRgfEventArgs<TArgs> where TArgs : EventArgs
+public interface IRgfEventArgs
 {
     object Sender { get; }
 
     DateTime TriggeredAt { get; }
 
-    TArgs Args { get; }
-
     bool Handled { get; set; }
 
     bool PreventDefault { get; set; }
+}
+
+public interface IRgfEventArgs<TEventArgs> : IRgfEventArgs where TEventArgs : EventArgs
+{
+    TEventArgs Args { get; }
 }

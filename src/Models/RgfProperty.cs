@@ -65,7 +65,7 @@ public enum ClientDataType
     Boolean = 7,
 }
 
-public static class EnumExtension
+public static class ClientDataTypeExtension
 {
     public static bool IsNumeric(this ClientDataType data)
     {
@@ -160,6 +160,9 @@ public class RgfProperty : IRgfProperty
 
     [JsonIgnore]
     public bool Nullable => Options?.GetBoolValue("RGO_Nullable") ?? false;
+
+    [JsonIgnore]
+    public bool IsDynamic => Ex?.Contains("D") == true;
 
     [JsonIgnore]
     public bool Required => !Nullable;
