@@ -32,7 +32,7 @@ public class RgfListParam
     public RgfFilter.Condition[] FixFilter { get; set; }
 
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public RgfAggregationSettings AggregateParam { get; set; }
+    public RgfAggregationSettings AggregationSettings { get; set; }
 
     public RgfListParam ShallowCopy() => (RgfListParam)MemberwiseClone();
 }
