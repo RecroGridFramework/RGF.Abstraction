@@ -11,10 +11,7 @@ public class RgfGridSetting
     public string SettingsName { get; set; }
 
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public bool? IsPublic { get; set; }
-
-    [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
-    public bool IsPublicNonNullable { get => IsPublic ?? false; set { IsPublic = value; } }
+    public string RoleId { get; set; }
 
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public bool? IsReadonly { get; set; }
